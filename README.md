@@ -1,5 +1,6 @@
 ✈️ Kinetic Airport Data Sculpture
 
+
 A physical visualization of movement.
 
 This project transforms real-time airport activity across New York City into motion — using servo-driven rods to make invisible systems visible.
@@ -8,7 +9,8 @@ Built in ~1 week.
 
 🎥 Demo
 
-
+- Video: `media/KineticDemo1.mp4`
+- Preview still: `media/KINETIC_still.jpg`
 
 
 🌊 The Idea
