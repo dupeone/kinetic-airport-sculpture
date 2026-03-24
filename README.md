@@ -1,16 +1,17 @@
-Airport Flow
-A Kinetic Data Sculpture
+# Airport Flow  
+### A Kinetic Data Sculpture
 
+![Preview](media/KINETIC_still.jpg)
 
+*An exploration of translating invisible systems into physical motion.*
 
-
-An exploration of translating invisible systems into physical motion.
+---
 
 Four rods move continuously — responding to the flow of people arriving and departing across New York City.
 
 What is normally abstract data becomes something you can watch.
 
-![Preview](media/KINETIC_still.jpg)
+
 
 A physical system that turns live airport activity into motion.
 
@@ -19,15 +20,17 @@ Four rods move continuously — reflecting the flow of people arriving and depar
 What is normally abstract data becomes something you can watch.
 
 
+---
 
-## 🎥 Demo
+## 🎥
 
 ![Preview](media/KineticDemoGif.gif)
 
 [▶ Watch Demos](media/)
 
+---
 
-## 💡 Concept
+## Concept
 
 Air travel is constant movement — arrivals, departures, rhythm.
 
@@ -39,97 +42,67 @@ Angle → intensity
 
 At any moment, the sculpture reflects the state of motion through the city.
 
-## 🌊 The Idea
-
-Air travel is constant flow.
-
-Arrivals. Departures. Rhythm.
-
-This sculpture turns that flow into something you can see and feel.
-
-First 2 rods → Arrivalse
-
-Second 2 rods → Departures
-
-Motion reflects intensity over time
+---
 
 
-## ⚙️ System
+## System
 
-Live Flight Data → ESP32 → Servo Driver → Physical Motion
+Live data is translated directly into motion.
 
-The ESP32 connects to WiFi and pulls live data
+API → ESP32 → Servo Driver → Rods
 
-Data is compressed into simple ranges
+No screens.  
+No dashboards.  
+Just motion.
 
-Each rod represents a slice of activity
+---
 
-Motion is intentionally minimal — subtle tilt over time
+## Form
 
-## 🧩 Build
+A linear arrangement emphasizes direction and flow.
 
-Electronics
+Tilt replaces vertical movement — reducing mechanical complexity while increasing legibility.
 
---ESP32 (WiFi-enabled microcontroller)
+The goal is not precision.  
+It is presence.
 
---PCA9685 (16-channel servo driver)
+---
 
---SG90 micro servos
+## Build
 
-Mechanical
+ESP32  
+PCA9685  
+SG90 servos  
+Carbon fiber rods  
+Pushrod linkages  
+5V power  
 
---Carbon fiber rods (3mm)
+---
 
---Steel pushrods + linkage
-
---Plexiglass top plate
-
-Power
-
---5V 5A external supply
-
-Lighting
-
---WS2812B LED strip (addressable)
-
-
-## 📊 Data
-
+## Data
 Source: AeroDataBox API (RapidAPI)
 
 Data sampled in short time windows
 
 Normalized → mapped to servo angles
 
+---
 
-## 🎯 Design Choices
+## Next
 
-Tilt over lift → more stable, more readable
-
-Linear layout → clear left/right meaning
-
-Low amplitude motion → avoids noise, feels intentional
-
-Minimal abstraction → data → motion, directly
+Refined linkage system  
+Structural enclosure  
+Expanded data mapping  
 
 
-## 🔮 Next Iteration
+---
 
-Precision linkage (ball joints / bearings)
+## Context
 
-Motion interpolation (more fluid transitions)
+Built in one week as a focused exploration of:
 
-Enclosed structure / mounting system
+physical computing  
+motion as a medium  
+real-time systems  
 
-Higher resolution data mapping
-
-Fully autonomous data pipeline
-
-
-## ❤️ Why This Exists
-
-An experiment in:  Physical computing, Motion as data, Real-time systems, Learning by building, 
-
-## 🧠 Note
-
-This project was designed and built in 1 week as a proof of concept — prioritizing exploration, iteration, and execution over perfection. 
+and the idea that data doesn’t have to live on a screen.
