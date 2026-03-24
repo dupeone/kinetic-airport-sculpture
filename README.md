@@ -1,4 +1,14 @@
-✈️ Airport Flow — A Kinetic Data Sculpture
+Airport Flow
+A Kinetic Data Sculpture
+
+
+
+
+An exploration of translating invisible systems into physical motion.
+
+Four rods move continuously — responding to the flow of people arriving and departing across New York City.
+
+What is normally abstract data becomes something you can watch.
 
 ![Preview](media/KINETIC_still.jpg)
 
