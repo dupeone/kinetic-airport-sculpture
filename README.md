@@ -11,7 +11,7 @@ Built in ~1 week.
 
 🎥 Demo
 
-![Kinetic demo preview](media/kineticdemogif.gif)
+![Preview](media/KineticDemoHif.gif)
 
 [▶ Watch Demos](media/)
 
