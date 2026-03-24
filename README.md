@@ -23,9 +23,9 @@ Air travel is constant movement — arrivals, departures, rhythm.
 
 This piece reduces that system to a simple physical language:
 
-- Left → arrivals  
-- Right → departures  
-- Angle → intensity  
+Left → arrivals  
+Right → departures  
+Angle → intensity  
 
 At any moment, the sculpture reflects the state of motion through the city.
 
