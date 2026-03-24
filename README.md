@@ -1,5 +1,6 @@
 ✈️ Kinetic Airport Data Sculpture
 
+![Preview](media/KINETIC_still.jpg)
 
 A physical visualization of movement.
 
@@ -9,8 +10,7 @@ Built in ~1 week.
 
 🎥 Demo
 
-- Video: `media/KineticDemo1.mp4`
-- Preview still: `media/KINETIC_still.jpg`
+[![Watch Demo](media/KINETIC_still.jpg)](media/KineticDemo1.mp4)
 
 
 🌊 The Idea
