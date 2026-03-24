@@ -32,15 +32,10 @@ At any moment, the sculpture reflects the state of motion through the city.
 ## 🌊 The Idea
 
 Air travel is constant flow.
-
 Arrivals. Departures. Rhythm.
-
 This sculpture turns that flow into something you can see and feel.
-
 First 2 rods → Arrivalse
-
 Second 2 rods → Departures
-
 Motion reflects intensity over time
 
 
