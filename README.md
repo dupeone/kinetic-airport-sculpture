@@ -10,14 +10,14 @@ What is normally abstract data becomes something you can watch.
 
 
 
-🎥 Demo
+## 🎥 Demo
 
 ![Preview](media/KineticDemoGif.gif)
 
 [▶ Watch Demos](media/)
 
 
-💡 Concept
+## 💡 Concept
 
 Air travel is constant movement — arrivals, departures, rhythm.
 
@@ -29,7 +29,7 @@ This piece reduces that system to a simple physical language:
 
 At any moment, the sculpture reflects the state of motion through the city.
 
-🌊 The Idea
+## 🌊 The Idea
 
 Air travel is constant flow.
 
@@ -44,7 +44,7 @@ Second 2 rods → Departures
 Motion reflects intensity over time
 
 
-⚙️ System
+## ⚙️ System
 
 Live Flight Data → ESP32 → Servo Driver → Physical Motion
 
@@ -56,7 +56,7 @@ Each rod represents a slice of activity
 
 Motion is intentionally minimal — subtle tilt over time
 
-🧩 Build
+## 🧩 Build
 
 Electronics
 
@@ -83,7 +83,7 @@ Lighting
 --WS2812B LED strip (addressable)
 
 
-📊 Data
+## 📊 Data
 
 Source: AeroDataBox API (RapidAPI)
 
@@ -92,7 +92,7 @@ Data sampled in short time windows
 Normalized → mapped to servo angles
 
 
-🎯 Design Choices
+## 🎯 Design Choices
 
 Tilt over lift → more stable, more readable
 
@@ -103,7 +103,7 @@ Low amplitude motion → avoids noise, feels intentional
 Minimal abstraction → data → motion, directly
 
 
-🔮 Next Iteration
+## 🔮 Next Iteration
 
 Precision linkage (ball joints / bearings)
 
@@ -116,10 +116,10 @@ Higher resolution data mapping
 Fully autonomous data pipeline
 
 
-❤️ Why This Exists
+## ❤️ Why This Exists
 
 An experiment in:  Physical computing, Motion as data, Real-time systems, Learning by building, 
 
-🧠 Note
+## 🧠 Note
 
 This project was designed and built in 1 week as a proof of concept — prioritizing exploration, iteration, and execution over perfection. 
