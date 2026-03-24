@@ -8,11 +8,13 @@ This project transforms real-time airport activity across New York City into mot
 
 Built in ~1 week.
 
+
 🎥 Demo
 
 ![Kinetic demo preview](media/kineticdemogif.gif)
 
 [▶ Watch Demos](media/)
+
 
 
 🌊 The Idea
