@@ -10,7 +10,9 @@ Built in ~1 week.
 
 🎥 Demo
 
-[![▶ Watch Demos](media/)
+![Kinetic demo preview](media/kineticdemogif.gif)
+
+[▶ Watch Demos](media/)
 
 
 🌊 The Idea
