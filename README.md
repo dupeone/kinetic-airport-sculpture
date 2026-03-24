@@ -5,7 +5,7 @@
 
 *An exploration of translating invisible systems into physical motion.*
 
-A study in motion, translation, and physical presence.
+A study in flow, translation, and physical presence.
 ---
 
 Four rods move continuously — responding to the flow of people arriving and departing across New York City.
@@ -14,9 +14,9 @@ What is normally abstract data becomes something you can watch.
 
 
 
-A physical system that turns live airport activity into motion.
+A physical system that makes the flow of air travel visible.
 
-Four rods move continuously — reflecting the flow of people arriving and departing across New York City.
+Four rods move continuously — reflecting the rhythm of arrivals and departures across New York City.
 
 What is normally abstract data becomes something you can watch.
 
@@ -48,7 +48,7 @@ At any moment, the sculpture reflects the state of motion through the city.
 
 ## System
 
-Live data is translated directly into motion.
+Live data becomes motion.
 
 API → ESP32 → Servo Driver → Rods
 
@@ -69,7 +69,7 @@ It is presence.
 
 ---
 
-## Build
+## Components
 
 ESP32  
 PCA9685  
