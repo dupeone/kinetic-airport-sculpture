@@ -4,7 +4,7 @@
 ![Preview](media/KINETIC_still.jpg)
 
 *An exploration of translating invisible systems into physical motion.*
-
+A study in motion, translation, and physical presence.
 ---
 
 Four rods move continuously — responding to the flow of people arriving and departing across New York City.
