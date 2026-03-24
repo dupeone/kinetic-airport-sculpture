@@ -10,7 +10,7 @@ Built in ~1 week.
 
 🎥 Demo
 
-[![▶ Watch Demo](media/KINETIC_still.jpg)](media/KineticDemo1.mp4)
+[![▶ Watch Demos](media/)
 
 
 🌊 The Idea
