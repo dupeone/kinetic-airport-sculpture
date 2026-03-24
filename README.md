@@ -4,6 +4,7 @@
 ![Preview](media/KINETIC_still.jpg)
 
 *An exploration of translating invisible systems into physical motion.*
+
 A study in motion, translation, and physical presence.
 ---
 
