@@ -1,12 +1,13 @@
-✈️ Kinetic Airport Data Sculpture
+✈️ Airport Flow — A Kinetic Data Sculpture
 
 ![Preview](media/KINETIC_still.jpg)
 
-A physical visualization of movement.
+A physical system that turns live airport activity into motion.
 
-This project transforms real-time airport activity across New York City into motion — using servo-driven rods to make invisible systems visible.
+Four rods move continuously — reflecting the flow of people arriving and departing across New York City.
 
-Built in ~1 week.
+What is normally abstract data becomes something you can watch.
+
 
 
 🎥 Demo
@@ -16,6 +17,17 @@ Built in ~1 week.
 [▶ Watch Demos](media/)
 
 
+🎯 Concept
+
+Air travel is constant movement — arrivals, departures, rhythm.
+
+This piece reduces that system to a simple physical language:
+
+- Left → arrivals  
+- Right → departures  
+- Angle → intensity  
+
+At any moment, the sculpture reflects the state of motion through the city.
 
 🌊 The Idea
 Air travel is constant flow.
