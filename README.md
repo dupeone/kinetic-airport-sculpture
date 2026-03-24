@@ -30,6 +30,7 @@ This piece reduces that system to a simple physical language:
 At any moment, the sculpture reflects the state of motion through the city.
 
 🌊 The Idea
+
 Air travel is constant flow.
 
 Arrivals. Departures. Rhythm.
@@ -121,4 +122,4 @@ An experiment in:  Physical computing, Motion as data, Real-time systems, Learni
 
 🧠 Note
 
-This project was designed and built rapidly as a proof of concept — prioritizing exploration, iteration, and execution over perfection.
+This project was designed and built in 1 week as a proof of concept — prioritizing exploration, iteration, and execution over perfection. 
