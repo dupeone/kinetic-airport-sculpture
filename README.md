@@ -17,7 +17,7 @@ What is normally abstract data becomes something you can watch.
 [▶ Watch Demos](media/)
 
 
-🎯 Concept
+💡 Concept
 
 Air travel is constant movement — arrivals, departures, rhythm.
 
