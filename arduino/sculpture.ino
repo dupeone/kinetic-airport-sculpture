@@ -40,10 +40,10 @@ Adafruit_PWMServoDriver pca9685 = Adafruit_PWMServoDriver();
 const int STEP_SIZE  = 1;
 const int STEP_DELAY = 60;
 
-int pos1 = SERVO_MIN;  // arrivals start at extreme
-int pos2 = SERVO_MIN;  // arrivals start at extreme
-int pos3 = SERVO_MAX;  // departures start at extreme
-int pos4 = SERVO_MAX;  // departures start at extreme
+int pos1 = SERVO_MIN;
+int pos2 = SERVO_MIN;
+int pos3 = SERVO_MAX;
+int pos4 = SERVO_MAX;
 
 // =========================
 // LED STRIP
@@ -62,7 +62,7 @@ uint8_t currentB4 = 20;
 // TIMING
 // =========================
 unsigned long lastUpdateMs = 0;
-const unsigned long UPDATE_INTERVAL_MS = 60000;  // 1 minute
+const unsigned long UPDATE_INTERVAL_MS = 60000;
 
 // =========================
 // DATA
@@ -72,13 +72,11 @@ int lgaArrivals   = 0;
 int jfkDepartures = 0;
 int lgaDepartures = 0;
 
-// previous counts, so rods still move if counts differ
 int prevJfkArrivals   = -1;
 int prevLgaArrivals   = -1;
 int prevJfkDepartures = -1;
 int prevLgaDepartures = -1;
 
-// shorter window = more sensitivity
 const int OFFSET_MINUTES   = 0;
 const int DURATION_MINUTES = 15;
 
@@ -120,18 +118,43 @@ void moveAllSmooth(int t1, int t2, int t3, int t4) {
 
 // =========================
 // LED HELPERS
-// left = green
-// right = blue
+// arrivals = green
+// departures = blue
 // brightness = amount
 // =========================
 void setSegmentBrightness(int startIdx, int endIdx, uint8_t brightness, bool isArrival) {
   for (int i = startIdx; i < endIdx; i++) {
     if (isArrival) {
-      leds[i] = CRGB(0, brightness, 0);   // green
+      leds[i] = CRGB(0, brightness, 0);
     } else {
-      leds[i] = CRGB(0, 0, brightness);   // blue
+      leds[i] = CRGB(0, 0, brightness);
     }
   }
+}
+
+void renderCurrentLEDState() {
+  setSegmentBrightness(0, 4,   currentB1, true);
+  setSegmentBrightness(4, 8,   currentB2, true);
+  setSegmentBrightness(8, 12,  currentB3, false);
+  setSegmentBrightness(12, 16, currentB4, false);
+
+  leds[16] = CRGB::Black;
+  leds[17] = CRGB::Black;
+
+  FastLED.show();
+}
+
+void showUpdatePurple() {
+  CRGB purple = CRGB(120, 45, 150);
+
+  for (int i = 0; i < 16; i++) {
+    leds[i] = purple;
+  }
+
+  leds[16] = CRGB(70, 20, 90);
+  leds[17] = CRGB(70, 20, 90);
+
+  FastLED.show();
 }
 
 void fadeLEDsTo(uint8_t targetB1, uint8_t targetB2, uint8_t targetB3, uint8_t targetB4) {
@@ -152,43 +175,13 @@ void fadeLEDsTo(uint8_t targetB1, uint8_t targetB2, uint8_t targetB3, uint8_t ta
     if (currentB4 < targetB4) { currentB4++; done = false; }
     else if (currentB4 > targetB4) { currentB4--; done = false; }
 
-    setSegmentBrightness(0, 4,   currentB1, true);   // JFK arrivals
-    setSegmentBrightness(4, 8,   currentB2, true);   // LGA arrivals
-    setSegmentBrightness(8, 12,  currentB3, false);  // JFK departures
-    setSegmentBrightness(12, 16, currentB4, false);  // LGA departures
-
-    leds[16] = CRGB::Black;
-    leds[17] = CRGB::Black;
-
-    FastLED.show();
+    renderCurrentLEDState();
     delay(15);
-  }
-}
-
-void flashLEDs() {
-  for (int b = 0; b <= 120; b += 10) {
-    for (int i = 0; i < NUM_LEDS; i++) {
-      leds[i] = CRGB(b, b, b);
-    }
-    FastLED.show();
-    delay(10);
-  }
-
-  for (int b = 120; b >= 0; b -= 10) {
-    for (int i = 0; i < NUM_LEDS; i++) {
-      leds[i] = CRGB(b, b, b);
-    }
-    FastLED.show();
-    delay(10);
   }
 }
 
 // =========================
 // MAPPING
-// low count = extremes
-// high count = near center, but never center
-// arrivals:   280 -> 299
-// departures: 320 -> 301
 // =========================
 int mapArrivalToServo(int count) {
   int c = constrain(count, 0, 20);
@@ -205,13 +198,12 @@ uint8_t mapCountToBrightness(int count) {
   return (uint8_t)map(c, 0, 20, 10, 160);
 }
 
-// force visible movement when counts change
 int forceArrivalMovement(int mappedTarget, int newCount, int oldCount) {
   if (oldCount == -1) return mappedTarget;
   if (newCount == oldCount) return mappedTarget;
 
   int diff = newCount - oldCount;
-  mappedTarget += diff;   // more arrivals = move inward on left side
+  mappedTarget += diff;
 
   if (mappedTarget < SERVO_MIN) mappedTarget = SERVO_MIN;
   if (mappedTarget > 299) mappedTarget = 299;
@@ -224,7 +216,7 @@ int forceDepartureMovement(int mappedTarget, int newCount, int oldCount) {
   if (newCount == oldCount) return mappedTarget;
 
   int diff = newCount - oldCount;
-  mappedTarget -= diff;   // more departures = move inward on right side
+  mappedTarget -= diff;
 
   if (mappedTarget < 301) mappedTarget = 301;
   if (mappedTarget > SERVO_MAX) mappedTarget = SERVO_MAX;
@@ -358,26 +350,36 @@ bool fetchAirportBoth(const String& airportCode, int &arrivalsCount, int &depart
   return true;
 }
 
-void fetchAllAirportData() {
+bool fetchAllAirportData(int &newJfkArrivals, int &newLgaArrivals, int &newJfkDepartures, int &newLgaDepartures) {
   int a = 0, d = 0;
+  bool gotAny = false;
+
+  newJfkArrivals   = jfkArrivals;
+  newLgaArrivals   = lgaArrivals;
+  newJfkDepartures = jfkDepartures;
+  newLgaDepartures = lgaDepartures;
 
   if (fetchAirportBoth("JFK", a, d)) {
-    jfkArrivals = a;
-    jfkDepartures = d;
+    newJfkArrivals   = a;
+    newJfkDepartures = d;
+    gotAny = true;
   }
 
-  delay(2000);  // helps with rate limiting
+  delay(2000);
 
   if (fetchAirportBoth("LGA", a, d)) {
-    lgaArrivals = a;
-    lgaDepartures = d;
+    newLgaArrivals   = a;
+    newLgaDepartures = d;
+    gotAny = true;
   }
 
-  Serial.println("Current values:");
-  Serial.print("JFK arrivals: ");   Serial.println(jfkArrivals);
-  Serial.print("LGA arrivals: ");   Serial.println(lgaArrivals);
-  Serial.print("JFK departures: "); Serial.println(jfkDepartures);
-  Serial.print("LGA departures: "); Serial.println(lgaDepartures);
+  Serial.println("Fetched values:");
+  Serial.print("JFK arrivals: ");   Serial.println(newJfkArrivals);
+  Serial.print("LGA arrivals: ");   Serial.println(newLgaArrivals);
+  Serial.print("JFK departures: "); Serial.println(newJfkDepartures);
+  Serial.print("LGA departures: "); Serial.println(newLgaDepartures);
+
+  return gotAny;
 }
 
 // =========================
@@ -389,7 +391,6 @@ void applyData() {
   int target3 = mapDepartureToServo(jfkDepartures);
   int target4 = mapDepartureToServo(lgaDepartures);
 
-  // force visible motion when count changes
   target1 = forceArrivalMovement(target1, jfkArrivals, prevJfkArrivals);
   target2 = forceArrivalMovement(target2, lgaArrivals, prevLgaArrivals);
   target3 = forceDepartureMovement(target3, jfkDepartures, prevJfkDepartures);
@@ -406,7 +407,6 @@ void applyData() {
   Serial.print("Rod 3: "); Serial.println(target3);
   Serial.print("Rod 4: "); Serial.println(target4);
 
-  flashLEDs();
   moveAllSmooth(target1, target2, target3, target4);
   fadeLEDsTo(b1, b2, b3, b4);
 
@@ -414,6 +414,45 @@ void applyData() {
   prevLgaArrivals   = lgaArrivals;
   prevJfkDepartures = jfkDepartures;
   prevLgaDepartures = lgaDepartures;
+}
+
+void updateCycle() {
+  int newJfkArrivals   = jfkArrivals;
+  int newLgaArrivals   = lgaArrivals;
+  int newJfkDepartures = jfkDepartures;
+  int newLgaDepartures = lgaDepartures;
+
+  bool ok = fetchAllAirportData(newJfkArrivals, newLgaArrivals, newJfkDepartures, newLgaDepartures);
+
+  if (!ok) {
+    Serial.println("Update failed, keeping previous display.");
+    renderCurrentLEDState();
+    return;
+  }
+
+  bool hasValuesToUpdate =
+    (newJfkArrivals > 0) ||
+    (newLgaArrivals > 0) ||
+    (newJfkDepartures > 0) ||
+    (newLgaDepartures > 0);
+
+  if (!hasValuesToUpdate) {
+    Serial.println("No values to update, keeping previous display.");
+    renderCurrentLEDState();
+    return;
+  }
+
+  // only show purple briefly right before applying update
+  showUpdatePurple();
+  delay(200);
+
+  jfkArrivals   = newJfkArrivals;
+  lgaArrivals   = newLgaArrivals;
+  jfkDepartures = newJfkDepartures;
+  lgaDepartures = newLgaDepartures;
+
+  Serial.println("Applying updated values...");
+  applyData();
 }
 
 // =========================
@@ -430,12 +469,11 @@ void setup() {
   FastLED.setBrightness(80);
 
   writeAll();
-  fadeLEDsTo(20, 20, 20, 20);
+  renderCurrentLEDState();
 
   connectWiFi();
 
-  fetchAllAirportData();
-  applyData();
+  updateCycle();
 
   lastUpdateMs = millis();
 }
@@ -446,8 +484,7 @@ void loop() {
   }
 
   if (millis() - lastUpdateMs >= UPDATE_INTERVAL_MS) {
-    fetchAllAirportData();
-    applyData();
+    updateCycle();
     lastUpdateMs = millis();
   }
 
