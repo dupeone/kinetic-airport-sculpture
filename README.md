@@ -43,6 +43,9 @@ Angle → intensity
 
 At any moment, the sculpture reflects the state of motion through the city.
 
+Towards 180 degrees -> Low traffic
+Towards 90 degrees -> High traffic
+
 ---
 
 
